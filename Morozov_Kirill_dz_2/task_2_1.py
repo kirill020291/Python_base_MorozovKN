@@ -1,11 +1,10 @@
-a = 15 * 3
-print(type(a))
+my_list = [15 * 3, 15 / 3, 15 // 2, 15 ** 2]
 
-b = 15 / 3
-print(type(b))
 
-c = 15 ** 2
-print(type(c))
+def my_type():
+    for i in range(len(my_list)):
+        print(type(my_list[i]))
+    return
 
-d = 15 ** 2
-print(type(d))
+
+my_type()
