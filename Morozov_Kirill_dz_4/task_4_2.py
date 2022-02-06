@@ -1,9 +1,10 @@
 from decimal import Decimal
+import lxml
 import requests
 import sys
 import typing
 from pyquery import PyQuery as pq
-import lxml
+from lxml import etree
 
 URL = 'http://www.cbr.ru/scripts/XML_daily.asp'
 
@@ -25,7 +26,7 @@ def extract_data(tag: str) -> typing.List:
     return curs_val.xpath(f'//Valute/{tag}/text()')
 
 
-def currency_rates(code: str) -> Decimal:
+def currency_rates(code: str) -> Decimal | None:
     """возвращает курс валюты `code` по отношению к рублю"""
     code = code.upper()
     names = extract_data("CharCode")
@@ -39,5 +40,6 @@ def currency_rates(code: str) -> Decimal:
     return result_value
 
 
-print(currency_rates("uSD"))
-print(currency_rates("noname"))
+if __name__ == '__main__':
+    print(currency_rates("eUr"))
+    print(currency_rates("noname"))
